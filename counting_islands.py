@@ -1,5 +1,5 @@
 from queue import Queue
-
+from typing import List
 
 def bfs(map: list, i: int, j: int):
     """Makes Breadth First Search and marks island visited.
@@ -23,16 +23,18 @@ def bfs(map: list, i: int, j: int):
                 q.put((x+dx, y+dy))
 
 
-def counting_islands(map: list):
+def counting_islands(map: list) -> int:
     """Takes Matrix M*N as an input and counts the number of islands.
 
     The function uses BFS algorithm to find the solution.
-    There are 3 possible states on the map: 
+    There are 3 possible states on the map:
     0 - the ocean, 1 - unvisited islands, 2 - visited islands
     At the end of the algorith all the islands will be visited.
 
     Args:
         map (List): Matrix M*N size
+    Returns:
+        int: Number of islands
     """
     num_islands = 0
     for i in range(len(map)):
@@ -40,12 +42,15 @@ def counting_islands(map: list):
             if map[i][j] != 1:
                 continue
             num_islands += 1
-            bfs(map, i, j) 
+            bfs(map, i, j)
     return num_islands
 
 
-def read_row():
-    """Reads row and raise error if not integer
+def read_row() -> List:
+    """Reads a row and raise error if there is non-integer value in a row
+
+    Returns:
+        List: row of cells
     """
     inp = input()
     try:
@@ -55,8 +60,11 @@ def read_row():
     return row
 
 
-def read_input():
+def read_input() -> List:
     """Reads M,N dimentions of Matrix and then full map.
+
+    Returns:
+        List: All the map with islands.
     """
     map = []
     first_row = read_row()
@@ -69,9 +77,9 @@ def read_input():
         if len(row) != N:
             raise ValueError(f"Row length must be equal N={N}")
         map.append(row)
-    
-    return map     
-   
+
+    return map
+
 
 if __name__ == '__main__':
     map = read_input()
