@@ -1,7 +1,10 @@
 from queue import Queue
 from typing import List
 
-def bfs(map: list, i: int, j: int):
+MapType = List[List[int]]
+
+
+def bfs(map: MapType, i: int, j: int):
     """Makes Breadth First Search and marks island visited.
 
     Args:
@@ -23,7 +26,7 @@ def bfs(map: list, i: int, j: int):
                 q.put((x+dx, y+dy))
 
 
-def counting_islands(map: list) -> int:
+def counting_islands(map: MapType) -> int:
     """Takes Matrix M*N as an input and counts the number of islands.
 
     The function uses BFS algorithm to find the solution.
@@ -46,7 +49,7 @@ def counting_islands(map: list) -> int:
     return num_islands
 
 
-def read_row() -> List:
+def read_row() -> List[int]:
     """Reads a row and raise error if there is non-integer value in a row
 
     Returns:
@@ -60,7 +63,7 @@ def read_row() -> List:
     return row
 
 
-def read_input() -> List:
+def read_input() -> MapType:
     """Reads M,N dimentions of Matrix and then full map.
 
     Returns:
